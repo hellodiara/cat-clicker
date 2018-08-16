@@ -1,0 +1,37 @@
+body {
+	margin: 40px;
+}
+
+h1 {
+	font-family: Coiny, sans-serif;
+	font-size: 40px;
+}
+
+header {
+	text-align: center;
+}
+
+#cat-photo {
+	border-radius: 5px;
+	margin-top: 20px;
+	cursor: pointer;
+	max-width: 100%;
+    height: auto;
+
+}
+
+.scoreboard {
+	background-color: #c2cefc;
+	border-radius: 5px;
+	width: 120px;
+	color: white;
+	text-align: center;
+	padding: 1px;
+	display: inline-block;
+	font-family: Play, sans-serif;
+}
+
+.counter {
+	text-align: center;
+}
+
