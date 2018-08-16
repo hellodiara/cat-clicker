@@ -11,7 +11,7 @@ header {
 	text-align: center;
 }
 
-#cat-photo {
+#cat-photo-one, #cat-photo-two {
 	border-radius: 5px;
 	margin-top: 20px;
 	cursor: pointer;
@@ -29,9 +29,5 @@ header {
 	padding: 1px;
 	display: inline-block;
 	font-family: Play, sans-serif;
-}
-
-.counter {
-	text-align: center;
 }
 
