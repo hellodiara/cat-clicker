@@ -17,13 +17,9 @@ header {
 	cursor: pointer;
 	max-width: 100%;
     height: auto;
-
 }
 
 .scoreboard {
-	background-color: #c2cefc;
-	border-radius: 5px;
-	width: 120px;
 	color: white;
 	text-align: center;
 	padding: 1px;
@@ -31,3 +27,51 @@ header {
 	font-family: Play, sans-serif;
 }
 
+.counter-cat-one {
+	background-color: #8D9389;
+	width: 120px;
+	height: 40px;
+	border-radius: 5px;
+}
+
+.counter-cat-two {
+	background-color: #4391A8;
+	width: 120px;
+	height: 40px;
+	border-radius: 5px;
+}
+/* ------- Text Overlays ------*/
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #008CBA;
+  border-radius: 5px;
+}
+
+.container:hover .overlay {
+  opacity: 1;
+}
+
+.text {
+  color: white;
+  font-size: 48px;
+  font-family: Play, sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
