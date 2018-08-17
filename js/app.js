@@ -11,8 +11,10 @@ catOne.addEventListener('click', function() {
 //Cat Two
 var catTwo = document.getElementById('cat-photo-two');
 let clicksTwo =1;
+
 // Counter clicks increment when user clicks on cat image two
 catTwo.addEventListener('click', function() {
 	document.getElementById('clicks-cat-two').innerHTML = clicksTwo++;
 	console.log('Cat two was cliked');
 }, false);
+
