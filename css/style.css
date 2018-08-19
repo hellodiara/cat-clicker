@@ -3,75 +3,26 @@ body {
 }
 
 h1 {
-	font-family: Coiny, sans-serif;
+	font-family: 'Coiny'!important;
 	font-size: 40px;
 }
 
-header {
-	text-align: center;
+li {
+  cursor: pointer;
+  color: #4391a8;
 }
 
-#cat-photo-one, #cat-photo-two {
-	border-radius: 5px;
-	margin-top: 20px;
-	cursor: pointer;
-	max-width: 100%;
-    height: auto;
-}
-
-.scoreboard {
-	color: white;
-	text-align: center;
-	padding: 1px;
-	display: inline-block;
-	font-family: Play, sans-serif;
-}
-
-.counter-cat-one {
-	background-color: #8D9389;
-	width: 120px;
-	height: 40px;
-	border-radius: 5px;
-}
-
-.counter-cat-two {
-	background-color: #4391A8;
-	width: 120px;
-	height: 40px;
-	border-radius: 5px;
-}
-/* ------- Text Overlays ------*/
-.container {
-  position: relative;
-  width: 100%;
-}
-
-.overlay {
-  position: absolute;
-  top: 50%;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  width: 100%;
-  opacity: 0;
-  transition: .5s ease;
-  background-color: #008CBA;
-  border-radius: 5px;
-}
-
-.container:hover .overlay {
-  opacity: 1;
-}
-
-.text {
+li:hover {
+  background-color: #4391a8;
   color: white;
-  font-size: 48px;
-  font-family: Play, sans-serif;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  text-align: center;
+}
+
+
+.card-img-top {
+  width: 300px;
+  height: 220px;
+}
+
+.badge-info {
+  text-align: center!important;
+}
