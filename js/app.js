@@ -1,113 +1,134 @@
-class Cat {
-    constructor() {
-      this.cat_list = [];
+/* ============================ Model ============================ */
+const catModel = {
+    selectedCat: null,
+    cats: [ 
+      {
+        clickCount : 0,
+        name: 'Smokey',
+        imgSrc: 'https://farm2.staticflickr.com/1126/625069434_db86b67df8_b.jpg'
+    },
+    {
+        clickCount : 0,
+        name: 'Azul',
+        imgSrc: 'https://farm3.staticflickr.com/2298/2290467335_89067c7b51_b.jpg'
+    },
+    {
+        clickCount : 0,
+        name: 'Pumpkin',
+        imgSrc: 'img/pexels-photo-1216491.jpeg'
+    },
+    {
+        clickCount : 0,
+        name: 'Ebony',
+        imgSrc: 'img/pexels-photo-1307503.jpeg'
+    },
+    {
+        clickCount : 0,
+        name: 'Spice',
+        imgSrc: 'https://farm3.staticflickr.com/2298/2290467335_89067c7b51_b.jpg',
     }
+  ]
 
-  addCat(cat) {
-    // Add Cat if it has a name and picture
-    if ( cat.hasOwnProperty("name") && cat.hasOwnProperty("picture") && cat.hasOwnProperty("clicks")) {
-      this.cat_list.push(cat)
-    }
+};
+
+/* ============================ Octopus ============================ */
+const meow = {
+
+  init: function() {
+    // set our current cat to the first one in the list
+    catModel.selectedCat = catModel.cats[0];
+
+    // initialize view
+    catListView.init();
+    catView.init();
+  },
+
+  getSelectedCat: function() {
+    return catModel.selectedCat;
+  },
+
+  getCats: function() {
+    return catModel.cats;
+  },
+
+  setSelectedCat: function(cat) {
+    catModel.selectedCat = cat;
+  },
+
+  incrementCounter: function() {
+    catModel.selectedCat.clickCount++
+    catView.render();
   }
+};
 
-  removeCat(cat) {
-    // Remove Cat if it has a name and picture
-    if ( cat.hasOwnProperty("name") && cat.hasOwnProperty("picture")&& cat.hasOwnProperty("clicks") ) {
-      for (let i=0; i < this.cat_list.length; i++) {
-        if ( this.cat_list[i].name === cat.name ) {
-          delete this.cat_list[i];
-        }
-      }
-    }
-  }
+/* ============================ View ============================ */
 
-  getSelectedCatHTML(cat) {
-    if ( cat.hasOwnProperty("name") && cat.hasOwnProperty("picture") && cat.hasOwnProperty("clicks")) {
-      return `<div class="card" style="width:400px" onClick="javascript:catClass.addClick('${cat.name}' , '${cat.picture}', '${cat.clicks}')">
-        <img class="card-img-top" src="${cat.picture}" alt="Cat image">
-        <div class="card-body">
-        <h4 class="card-title text-center">${cat.name}</h4>
-        <span class="badge badge-info" id="${cat.name}-clicks">${cat.clicks}</span>
-        </div>
-      </div>`;
-    } else {
-      return "Invalid cat!";
-    }
-  }
+const catView  = {
 
-  addClick(name, picture, clicks) {
-    for (let i=0; i < this.cat_list.length; i++) {
-        if ( this.cat_list[i].name === name ) {
-           this.cat_list[i]["clicks"] = this.cat_list[i].hasOwnProperty("clicks") ? this.cat_list[i]["clicks"]+1 : 1
-           document.getElementById(name + '-clicks').innerHTML = this.cat_list[i]["clicks"];
-        }
-      }
+  init: function() {
+    // Select & store DOM elements to use later
+    this.catElem = document.getElementById('selected-cat');
+    this.catNameElem = document.getElementById('cat-name');
+    this.catImageElem = document.getElementById('cat-img');
+    this.countElem = document.getElementById('cat-counter');
 
-  }
-
-  getCatList() {
-    const catHTML = this.cat_list.map(( cat, index ) => {
-      return `<li onClick="javascript: catClass.displaySelectedCatHTML('${cat.name}', '${cat.picture}', '${cat.clicks}')" id="${cat.name}" class="list-group-item">${cat.name}</li>`
+    // on click : increment the selected cat' click counter
+    this.catImageElem.addEventListener('click', function() {
+      meow.incrementCounter();
     });
 
-    return catHTML;
+    // render the view: update the dom with correct values
+    this.render();
+  },
+  // update the DOM with values from the selected cat
+  render: function() {  
+    const selectedCat = meow.getSelectedCat();
+    this.countElem.textContent = selectedCat.clickCount;
+    this.catNameElem.textContent = selectedCat.name;
+    this.catImageElem.src = selectedCat.imgSrc;
   }
-// Displays the selected cat
-  displaySelectedCatHTML(name, picture, clicks) {
-    console.log(clicks);
-    const selectedCatHTML = this.getSelectedCatHTML({
-      "name": name,
-      "picture": picture,
-      "clicks": clicks
-    });
-    document.getElementById("selected-cat").innerHTML = selectedCatHTML;
+};
 
-  }
+const catListView = {
 
-// Displays the cat list
-  displayCatList(catList) {
-    document.getElementById("cat-list").innerHTML = catList.join("");
-  }
+  init : function() {
+    // Select & store DOM elements to use later
+    this.catListElem = document.getElementById('cat-list');
 
+    // render this view by updating DOM 
+    this.render();
 
-} // End Cat Class
+  },
 
-// Cat objects list
-const catClass = new Cat();
-catClass.addCat({
-        "name": "Smokey",
-        "picture": "https://farm2.staticflickr.com/1126/625069434_db86b67df8_b.jpg",
-        "clicks": 0
-      });
+  render: function() {
+      var cat, elem, i;
+      // get the cats to be rendered
+      const cats = meow.getCats();
 
-catClass.addCat({
-        "name": "Azul",
-        "picture": "https://farm3.staticflickr.com/2298/2290467335_89067c7b51_b.jpg",
-        "clicks": 0
-      });
+      // empty the cat list
+      this.catListElem.innerHTML = '';
 
-catClass.addCat({
-        "name": "Pumpkin",
-        "picture": "img/pexels-photo-1216491.jpeg",
-        "clicks": 0
-      });
+      // loop over the cats
+      for (i=0; i < cats.length; i++) {
+        cat = cats[i];
 
-catClass.addCat({
-        "name": "Ebony",
-        "picture": "img/pexels-photo-1307503.jpeg",
-        "clicks": 0    
-      });
+        // make a new cat list and set its text
+        elem = document.createElement('li');
+        elem.textContent = cat.name;
 
-catClass.addCat({
-        "name": "Spice",
-        "picture": "https://farm3.staticflickr.com/2298/2290467335_89067c7b51_b.jpg",
-        "clicks": 0    
-      });
+        // On click , setSelectedCat and render catView
+        elem.addEventListener('click', (function(catCopy) {
+          return function() {
+            meow.setSelectedCat(catCopy);
+            catView.render();
+          };
+        })(cat));
 
+        // add element to the list
+        this.catListElem.appendChild(elem);
+      }
+    }
+};
 
-const catList = catClass.getCatList();
-
-catClass.displayCatList(catList);
-
-
-
+// launch
+meow.init();
