@@ -31,3 +31,15 @@ li:hover {
 .badge-info {
   text-align: center!important;
 }
+
+.row {
+  padding: 10px;
+}
+
+.btn {
+  margin-right: 10px;
+}
+
+.form-group {
+  margin-right: 10px;
+}
