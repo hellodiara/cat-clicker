@@ -37,6 +37,7 @@ const meow = {
   init: function() {
     // set our current cat to the first one in the list
     catModel.selectedCat = catModel.cats[0];
+    catModel.selectedCat = catNameValue;
 
     // initialize view
     catListView.init();
@@ -72,6 +73,11 @@ const catView  = {
     this.catImageElem = document.getElementById('cat-img');
     this.countElem = document.getElementById('cat-counter');
 
+    // For the form
+    this.catNameValue = document.getElementById("input-cat-name").value;
+    this.catImgSrcValue = document.getElementById("input-img-src").value;
+    this.catClicksValue = document.getElementById("input-cat-counter").value;
+
     // on click : increment the selected cat' click counter
     this.catImageElem.addEventListener('click', function() {
       meow.incrementCounter();
@@ -86,7 +92,14 @@ const catView  = {
     this.countElem.textContent = selectedCat.clickCount;
     this.catNameElem.textContent = selectedCat.name;
     this.catImageElem.src = selectedCat.imgSrc;
+
+    // For the form
+    this.catNameValue.textContent = selectedCat.name;
+    this.catImgSrcValue.src = selectedCat.imgSrc;
+    this.catClicksValue.textContent = selectedCat.clickCount;
+
   }
+
 };
 
 const catListView = {
@@ -129,6 +142,28 @@ const catListView = {
       }
     }
 };
+
+const adminButton = document.getElementById('admin');
+const adminPanel = document.getElementById('admin-panel');
+const cancelButton = document.getElementById('cancel');
+const saveButton = document.getElementById('save');
+
+// displays admin panel when you click on admin button
+function displayAdminPanel () {
+  adminPanel.classList.remove('hide-admin-panel');
+};
+adminButton.addEventListener('click', displayAdminPanel);
+
+// Hides admin panel when you click on cancel button
+function hideAdminPanel() {
+  adminPanel.classList.toggle("hide-admin-panel");
+};
+cancelButton.addEventListener('click', hideAdminPanel);
+
+// Save button onclick updates the current cat data
+
+// Save button onclick, closes the admin panel
+saveButton.addEventListener('click', hideAdminPanel);
 
 // launch
 meow.init();

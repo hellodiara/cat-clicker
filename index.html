@@ -36,30 +36,33 @@
     </div> <!-- end row --> 
 
     <!-- ========= FORM =========  -->
-    <div id="admin-panel" class="container">
+    <div class="container">
     <div class="row">
       <button id="admin" type="button" class="btn btn-primary">Admin</button>
       <button id="cancel" type="button" class="btn btn-secondary">Cancel</button>
     </div><!-- end 2nd row -->
+
+    <div  id="admin-panel" class="container hide-admin-panel">
     <div class="row">
       <div class="form-group">
-        <label for="usr">Cat's Name:</label>
-        <input type="text" class="form-control" id="usr">
+        <label for="cat-name">Cat's Name:</label>
+        <input type="text" class="form-control" id="input-cat-name" value="">
       </div>
       <div class="form-group">
-        <label for="pwd">Image Link</label>
-        <input type="text" class="form-control" id="pwd">
+        <label for="img-src">Image Link</label>
+        <input type="text" class="form-control" id="input-img-src" value="">
       </div>
       <div class="form-group">
-        <label for="pwd">Number of Clicks</label>
-        <input type="text" class="form-control" id="pwd">
+        <label for="cat-counter">Number of Clicks</label>
+        <input type="text" class="form-control" id="input-cat-counter" value="">
       </div>
     </div>
     <div class="row">
-      <button id="submit" type="button" class="btn btn-success">Submit</button>
+      <button id="save" type="button" class="btn btn-success">Save</button>
     </div><!-- end 2nd row -->
-    
-    </div>
+    </div> <!-- end admin panel -->
+
+    </div> <!-- end form container -->
 
   </div><!-- end outer container --> 
 
